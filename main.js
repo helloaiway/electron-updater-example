@@ -80,8 +80,8 @@ autoUpdater.on('error', (err) => {
   sendStatusToWindow('Error in auto-updater. ' + err);
 })
 autoUpdater.on('download-progress', (progressObj) => {
-  let log_message = "Download speed: " + progressObj.bytesPerSecond;
-  log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
+  let log_message = "Download speed: " + parseInt(progressObj.bytesPerSecond/1024) + 'M';
+  log_message = log_message + ' - Downloaded ' +parseInt(progressObj.percent) + '%';
   log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
   sendStatusToWindow(log_message);
 })
@@ -138,5 +138,5 @@ app.on('ready', function()  {
 // autoUpdater.on('download-progress', (progressObj) => {
 // })
 // autoUpdater.on('update-downloaded', (info) => {
-//   autoUpdater.quitAndInstall();  
+//   autoUpdater.quitAndInstall();
 // })
